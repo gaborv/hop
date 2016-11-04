@@ -11,12 +11,14 @@ module Hop.Types exposing (Config, Query, Address, newQuery, newAddress)
 
 import Dict
 
+
 {-| A Dict that holds query parameters
 
     Dict.Dict String String
 -}
 type alias Query =
     Dict.Dict String String
+
 
 {-| A Record that represents the current location
 Includes a `path` and a `query`
@@ -31,6 +33,7 @@ type alias Address =
     , query : Query
     }
 
+
 {-| Hop Configuration
 
 - basePath: Only for pushState routing (not hash). e.g. "/app".
@@ -41,6 +44,7 @@ type alias Config =
     { basePath : String
     , hash : Bool
     }
+
 
 {-|
 Create an empty Query record

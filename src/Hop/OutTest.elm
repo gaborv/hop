@@ -105,24 +105,24 @@ outputTest =
             ]
 
         run ( testCase, config, address, path, expected ) =
-            [ test testCase
-                <| \() ->
+            [ test testCase <|
+                \() ->
                     let
                         actual =
                             Out.output config address
                     in
                         Expect.equal expected actual
-            , test testCase
-                <| \() ->
+            , test testCase <|
+                \() ->
                     let
                         actual =
                             Out.outputFromPath config path
                     in
                         Expect.equal expected actual
             ]
-        
+
         tests =
-            List.concatMap  run inputs
+            List.concatMap run inputs
     in
         describe "output and outputFromPath" tests
 

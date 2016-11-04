@@ -22,8 +22,8 @@ getPathTest =
             ]
 
         run ( testCase, address, expected ) =
-            test testCase
-                <| \() ->
+            test testCase <|
+                \() ->
                     let
                         actual =
                             Address.getPath address
@@ -48,8 +48,8 @@ getQuery =
             ]
 
         run ( testCase, address, expected ) =
-            test testCase
-                <| \() ->
+            test testCase <|
+                \() ->
                     let
                         actual =
                             Address.getQuery address
@@ -74,8 +74,8 @@ parseTest =
             ]
 
         run ( testCase, location, expected ) =
-            test testCase
-                <| \() ->
+            test testCase <|
+                \() ->
                     let
                         actual =
                             Address.parse location

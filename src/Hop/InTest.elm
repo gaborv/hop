@@ -5,6 +5,7 @@ import Expect
 import Hop.In exposing (ingest)
 import Test exposing (..)
 
+
 type Route
     = NotFound
 
@@ -70,8 +71,8 @@ inputTest =
             ]
 
         run ( testCase, config, href, expected ) =
-            test testCase
-                <| \() ->
+            test testCase <|
+                \() ->
                     let
                         actual =
                             ingest config href

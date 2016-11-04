@@ -2,8 +2,9 @@ module Hop.Address exposing (..)
 
 import Dict
 import String
-import Http exposing (uriEncode, uriDecode)
+import Http exposing (encodeUri, decodeUri)
 import Hop.Types exposing (..)
+
 
 {-|
 Get the Path
@@ -11,7 +12,7 @@ Get the Path
 getPath : Address -> String
 getPath address =
     address.path
-        |> List.map uriEncode
+        |> List.map encodeUri
         |> String.join "/"
         |> String.append "/"
 
@@ -27,7 +28,7 @@ getQuery address =
     else
         address.query
             |> Dict.toList
-            |> List.map (\( k, v ) -> ( uriEncode k, uriEncode v ))
+            |> List.map (\( k, v ) -> ( encodeUri k, encodeUri v ))
             |> List.map (\( k, v ) -> k ++ "=" ++ v)
             |> String.join "&"
             |> String.append "?"
@@ -65,7 +66,7 @@ parsePath route =
         |> extractPath
         |> String.split "/"
         |> List.filter (\segment -> not (String.isEmpty segment))
-        |> List.map uriDecode
+        |> List.map (\segment -> decodeUri segment |> Maybe.withDefault segment)
 
 
 extractQuery : String -> String
@@ -105,7 +106,8 @@ queryKVtoTuple kv =
                 |> Maybe.withDefault ""
 
         firstDecoded =
-            uriDecode first
+            decodeUri first
+                |> Maybe.withDefault first
 
         second =
             splitted
@@ -114,6 +116,7 @@ queryKVtoTuple kv =
                 |> Maybe.withDefault ""
 
         secondDecoded =
-            uriDecode second
+            decodeUri second
+                |> Maybe.withDefault second
     in
         ( firstDecoded, secondDecoded )

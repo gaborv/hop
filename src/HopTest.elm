@@ -28,8 +28,8 @@ makeResolverTest =
             ]
 
         run ( testCase, config, href, expected ) =
-            test testCase
-                <| \() ->
+            test testCase <|
+                \() ->
                     let
                         resolver =
                             Hop.makeResolver config identity

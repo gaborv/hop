@@ -26,6 +26,7 @@ config =
     , hash = False
     }
 
+
 reverse : Route -> String
 reverse route =
     case route of

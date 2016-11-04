@@ -86,7 +86,7 @@ ingest =
 {-|
 `makeResolver` normalizes the URL using your config and then gives that normalised URL to your parser.
 
-Use this for creating a function to give to `Navigation.makeParser`. 
+Use this for creating a function to give to `Navigation.makeParser`.
 See examples in `docs/matching-routes.md`.
 
     Hop.makeResolver hopConfig parse
@@ -149,7 +149,7 @@ makeResolver :
     Config
     -> (String -> result)
     -> String
-    -> (result, Address)
+    -> ( result, Address )
 makeResolver config parse rawInput =
     let
         address =
@@ -162,7 +162,7 @@ makeResolver config parse rawInput =
                 |> String.dropLeft 1
                 |> parse
     in
-        (parseResult, address)
+        ( parseResult, address )
 
 
 
